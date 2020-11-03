@@ -38,8 +38,7 @@ Add "${no_of_items}" Items to Cart
     END
 
 Go to Cart
-    Wait Until Element Is Visible   ${CART_ICON}
-    Click Element   ${CART_ICON}
+    Select "${CART_ICON}"
 
 Go Back To Items Overview
     Select "${BACK_BUTTON}"
