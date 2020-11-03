@@ -7,45 +7,44 @@ ${URL}                      http://www.alza.cz
 ${BROWSER}                  Chrome
 ${DELAY}                    0
 ${CELL_PHONES}              link:Mobilní telefony
-${SORT_BY_PRICE}            link:Od nejdražšího
-${BUY_FIRST_ITEM}           xpath=//*[@id="boxes"]/div[1]/div[2]/div[1]/span/a[1]
-${BUY_SECOND_ITEM}          xpath=//*[@id="boxes"]/div[2]/div[2]/div[1]/span/a[1]
+${SORT_BY_PRICE_ASC}        link:Od nejdražšího
 ${BACK_BUTTON}              id:varABackButton
-${CART}                     id:basketLink
-
+${CART_ICON}                id:basketLink
+${CART_ICON_NO_OF_ITEMS}    xpath=//*[@id="basketLink"]/span[2]
 
 *** Keywords ***
-Open Browser To Main Page
+Open Browser On Main Page
     Open Browser    ${URL}    ${BROWSER}
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
 
 Select "${element}"
-    Wait Until Element Is Visible   ${element}    60s
+    Wait Until Element Is Visible   ${element}    40s
     Scroll Element Into View    ${element}
     Click Element   ${element}
 
-Go To Category
-    Select  ${CELL_PHONES}
+Go To Category "${category_name}"
+    Select "${category_name}"
 
 Sort Items By Price Asc
-    Select  ${SORT_BY_PRICE}
+    Select "${SORT_BY_PRICE_ASC}"
 
-Add Items to Cart
-     Select "${BUY_FIRST_ITEM}"
-     Go Back To Items Overview
-     Select "${BUY_SECOND_ITEM}"
-     Go Back To Items Overview
+Add "${no_of_items}" Items to Cart
+    [Documentation]     Add multiple items to cart by iterating over shopping items' div's
+    FOR    ${INDEX}    IN RANGE   ${no_of_items}
+       ${INDEX}    Evaluate    ${INDEX} + 1
+       Select "xpath=//*[@id="boxes"]/div[${INDEX}]/div[2]/div[1]/span/a[1]"
+       Go Back To Items Overview
+    END
 
 Go to Cart
-    Wait Until Element Is Visible   ${CART}
-    Click Element   ${CART}
+    Wait Until Element Is Visible   ${CART_ICON}
+    Click Element   ${CART_ICON}
 
 Go Back To Items Overview
     Select "${BACK_BUTTON}"
 
-My Test
-    Open Browser    https://www.alza.cz/luxusni-nejdrazsi-mobily/18843445.htm  ${BROWSER}
-    Maximize Browser Window
-    Add Items to Cart
-    Go to Cart
+Check "${no_of_items}" Items in Cart
+    Wait Until Element Is Visible   ${CART_ICON_NO_OF_ITEMS}
+    ${count}=    Get Text    ${CART_ICON_NO_OF_ITEMS}
+    Should Be Equal     ${count}         ${no_of_items}
