@@ -3,7 +3,6 @@ Documentation     A resource file with reusable keywords and variables.
 Library           SeleniumLibrary
 
 *** Variables ***
-#${URL}                      http://www.alza.cz
 ${BROWSER}                  Chrome
 ${DELAY}                    0
 ${CELL_PHONES}              link:Mobilní telefony
