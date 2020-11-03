@@ -19,7 +19,7 @@ Open Browser On Main Page
     Set Selenium Speed    ${DELAY}
 
 Select "${element}"
-    Wait Until Element Is Visible   ${element}    40s
+    Wait Until Element Is Visible   ${element}    60s
     Scroll Element Into View    ${element}
     Click Element   ${element}
 
