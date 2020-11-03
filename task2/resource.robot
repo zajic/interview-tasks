@@ -3,7 +3,7 @@ Documentation     A resource file with reusable keywords and variables.
 Library           SeleniumLibrary
 
 *** Variables ***
-${URL}                      http://www.alza.cz
+#${URL}                      http://www.alza.cz
 ${BROWSER}                  Chrome
 ${DELAY}                    0
 ${CELL_PHONES}              link:Mobilní telefony
@@ -28,6 +28,7 @@ Go To Category "${category_name}"
 
 Sort Items By Price Asc
     Select "${SORT_BY_PRICE_ASC}"
+    Sleep   3s
 
 Add "${no_of_items}" Items to Cart
     [Documentation]     Add multiple items to cart by iterating over shopping items' div's

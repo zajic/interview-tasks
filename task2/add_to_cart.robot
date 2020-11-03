@@ -2,6 +2,10 @@
 Documentation     A test suite with a single test case for adding items to cart
 Resource          resource.robot
 
+Metadata          Author        Zuzana Formanek
+Metadata          Version       0.1
+Metadata          Created On    Nov-03-2020
+
 *** Test Cases ***
 Add to Cart
     [Documentation]   Add two most expensive mobile phones to cart and check the number of items in cart icon matches the number of added items
