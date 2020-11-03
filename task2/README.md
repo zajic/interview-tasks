@@ -18,7 +18,7 @@ robot --variable URL:http://www.alza.cz add_to_cart.robot
 A test suite containing a single test case with the following steps:
 1. open alza.cz
 2. go to "Mobilni telefony" category
-3. sort shopping items by price in an ascending order
+3. sort shopping items by price in ascending order
 4. add two most expensive items to cart
 5. check that the number of items added to cart corresponds to the number of items displayed on the cart icon
 
